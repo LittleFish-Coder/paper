@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            width: 250px;
+            background-color: #f4f4f4;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .sidebar h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: rgb(107, 200, 194);
+            color: white;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            border-radius: 8px; /* Added to make the border rounder */
+        }
+
+        .sidebar button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Main content for displaying PDF */
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Sidebar for buttons -->
+<div class="sidebar">
+    <h2>PDF List</h2>
+    
+    <h3>DeepFake Dataset</h3>
+    <button onclick="viewPDF('DeepFake Dataset/Celeb-DF - A Large-scale Challenging Dataset for DeepFake Forensics.pdf')">Celeb-DF</button>
+    <button onclick="viewPDF('DeepFake Dataset/FaceForensics - A Large-scale Video Dataset for Forgery Detection in Human Faces.pdf')">FaceForensics</button>
+    <button onclick="viewPDF('DeepFake Dataset/FaceForensics++ - Learning to Detect Manipulated Facial Images.pdf')">FaceForensics++</button>
+    <button onclick="viewPDF('DeepFake Dataset/FakeAVCeleb - A Novel Audio-Video Multimodal Deepfake Dataset.pdf')">FakeAVCeleb</button>
+    <button onclick="viewPDF('DeepFake Dataset/The DeepFake Detection Challenge (DFDC) Dataset.pdf')">DFDC</button>
+    <button onclick="viewPDF('DeepFake Dataset/WildDeepfake - A Challenging Real-World Dataset for Deepfake Detection.pdf')">WildDeepfake</button>
+    
+    <h3>DeepFake Detection</h3>
+    <button onclick="viewPDF('DeepFake Detection/A Meta-Learning Approach for Few-Shot Face Forgery Segmentation and Classification.pdf')">A Meta-Learning Approach for Few-Shot Face Forgery Segmentation and Classification</button>
+    <button onclick="viewPDF('DeepFake Detection/A novel approach for detecting deep fake videos using graph neural network.pdf')">A novel approach for detecting deep fake videos using graph neural network</button>
+    <button onclick="viewPDF('DeepFake Detection/Can ChatGPT Detect DeepFakes? A Study of Using Multimodal Large Language Models for Media Forensics.pdf')">Can ChatGPT Detect DeepFakes?</button>
+    <button onclick="viewPDF('DeepFake Detection/Deepfake Video Detection via Facial Action Dependencies Estimation.pdf')">Deepfake Video Detection via Facial Action Dependencies Estimation</button>
+    <button onclick="viewPDF('DeepFake Detection/DFGNN - An interpretable and generalized graph neural network for deepfakes detection.pdf')">DFGNN</button>
+    <button onclick="viewPDF('DeepFake Detection/Dynamic Graph Learning with Content-guided Spatial-Frequency Relation Reasoning for Deepfake Detection.pdf')">Dynamic Graph Learning with Content-guided Spatial-Frequency Relation Reasoning for Deepfake Detection</button>
+    <button onclick="viewPDF('DeepFake Detection/Few-shot Forgery Detection via Guided Adversarial Interpolation.pdf')">Few-shot Forgery Detection via Guided Adversarial Interpolation</button>
+    <button onclick="viewPDF('DeepFake Detection/Generalized Zero and Few-Shot Transfer for Facial Forgery Detection.pdf')">Generalized Zero and Few-Shot Transfer for Facial Forgery Detection</button>
+    <button onclick="viewPDF('DeepFake Detection/GRACE - Graph-Regularized Attentive Convolutional Entanglement with Laplacian Smoothing for Robust DeepFake Video Detection.pdf')">GRACE</button>
+    <button onclick="viewPDF('DeepFake Detection/Learning Spatiotemporal Inconsistency via Thumbnail Layout for Face Deepfake Detection.pdf')">Learning Spatiotemporal Inconsistency via Thumbnail Layout for Face Deepfake Detection</button>
+    <button onclick="viewPDF('DeepFake Detection/Masked_Relation_Learning_for_DeepFake_Detection.pdf')">Masked Relation Learning for DeepFake Detection</button>
+    <button onclick="viewPDF('DeepFake Detection/Self-Supervised Graph Transformer for Deepfake Detection.pdf')">Self-Supervised Graph Transformer for Deepfake Detection</button>
+    <button onclick="viewPDF('DeepFake Detection/STRUCTURE MATTERS: ANALYZING VIDEOS VIA GRAPH NEURAL NETWORKS FOR SOCIAL MEDIA PLATFORM ATTRIBUTION.pdf')">STRUCTURE MATTERS</button>
+    <button onclick="viewPDF('DeepFake Detection/Video Face Manipulation Detection Through Ensemble of CNNs.pdf')">Video Face Manipulation Detection Through Ensemble of CNNs</button>
+    
+    <h3>DeepFake Generation</h3>
+    <button onclick="viewPDF('DeepFake Generation/Animate Anyone - Consistent and Controllable Image-to-Video Synthesis for Character Animation.pdf')">Animate Anyone</button>
+    <button onclick="viewPDF('DeepFake Generation/DeepFaceLab - Integrated, flexible and extensible face-swapping framework.pdf')">DeepFaceLab</button>
+    <button onclick="viewPDF('DeepFake Generation/Denoising Diffusion Probabilistic Models.pdf')">Denoising Diffusion Probabilistic Models</button>
+    <button onclick="viewPDF('DeepFake Generation/Everybody Dance Now.pdf')">Everybody Dance Now</button>
+    <button onclick="viewPDF('DeepFake Generation/Generative Adversarial Nets.pdf')">Generative Adversarial Nets</button>
+    <button onclick="viewPDF('DeepFake Generation/Image-to-Image Translation with Conditional Adversarial Networks.pdf')">Image-to-Image Translation with Conditional Adversarial Networks</button>
+    <button onclick="viewPDF('DeepFake Generation/Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks.pdf')">Unpaired Image-to-Image Translation</button>
+
+    <h3>Diffusion Model</h3>
+    <button onclick="viewPDF('Diffusion Model/Adding Conditional Control to Text-to-Image Diffusion Models.pdf')">Adding Conditional Control to Text-to-Image Diffusion Models</button>
+
+    <h3>FakeNewsDetection</h3>
+    <button onclick="viewPDF('FakeNewsDetection/DECOR-Degree-Corrected Social Graph Refinement for Fake News Detection.pdf')">DECOR-Degree-Corrected Social Graph Refinement for Fake News Detection</button>
+
+    <h3>GNN</h3>
+    <button onclick="viewPDF('GNN/Label-free Node Classification on Graphs with Large Language Models (LLMS).pdf')">Label-free Node Classification on Graphs with Large Language Models (LLMS)</button>
+
+    <h3>Model Design</h3>
+    <button onclick="viewPDF('Model Design/Attention Is All You Need.pdf')">Attention Is All You Need</button>
+    <button onclick="viewPDF('Model Design/Deep Residual Learning for Image Recognition.pdf')">Deep Residual Learning for Image Recognition</button>
+    <button onclick="viewPDF('Model Design/Distilling the Knowledge in a Neural Network.pdf')">Distilling the Knowledge in a Neural Network</button>
+    <button onclick="viewPDF('Model Design/FEW-SHOT LEARNING WITH GRAPH NEURAL NET- WORKS.pdf')">FEW-SHOT LEARNING WITH GRAPH NEURAL NETWORKS</button>
+    <button onclick="viewPDF('Model Design/Mask R-CNN.pdf')">Mask R-CNN</button>
+    <button onclick="viewPDF('Model Design/Neural Architecture Search With Reinforcement Learning.pdf')">Neural Architecture Search With Reinforcement Learning</button>
+    <button onclick="viewPDF('Model Design/NIPS-2012-imagenet-classification-with-deep-convolutional-neural-networks-Paper.pdf')">ImageNet Classification with Deep Convolutional Neural Networks</button>
+    <button onclick="viewPDF('Model Design/U-Net.pdf')">U-Net</button>
+    <button onclick="viewPDF('Model Design/Xception - Deep Learning with Depthwise Separable Convolutions.pdf')">Xception - Deep Learning with Depthwise Separable Convolutions</button>
+
+    <h3>Object Detection</h3>
+    <button onclick="viewPDF('Object Detection/YOLOv1.pdf')">YOLOv1</button>
+    <button onclick="viewPDF('Object Detection/YOLOv2.pdf')">YOLOv2</button>
+    <button onclick="viewPDF('Object Detection/YOLOv3.pdf')">YOLOv3</button>
+    <button onclick="viewPDF('Object Detection/YOLOv4.pdf')">YOLOv4</button>
+    <button onclick="viewPDF('Object Detection/YOLOv6.pdf')">YOLOv6</button>
+    <button onclick="viewPDF('Object Detection/YOLOv7.pdf')">YOLOv7</button>
+
+    <h3>Pose Estimation</h3>
+    <button onclick="viewPDF('Pose Estimation/AlphaPose - Whole-Body Regional Multi-Person Pose Estimation and Tracking in Real-Time.pdf')">AlphaPose</button>
+    <button onclick="viewPDF('Pose Estimation/DeepPose - Human Pose Estimation via Deep Neural Networks.pdf')">DeepPose</button>
+    <button onclick="viewPDF('Pose Estimation/OpenPose - Realtime Multi-Person 2D Pose Estimation using Part Affinity Fields.pdf')">OpenPose</button>
+    <button onclick="viewPDF('Pose Estimation/RMPE - Regional Multi-person Pose Estimation.pdf')">RMPE</button>
+
+</div>
+
+<!-- Main content for PDF viewer -->
+<div class="main-content">
+    <iframe id="pdfViewer" src="DeepFake Dataset/FaceForensics++ - Learning to Detect Manipulated Facial Images.pdf" type="application/pdf"></iframe>
+</div>
+
+<script>
+    // Function to view the selected PDF in the iframe
+    function viewPDF(pdfPath) {
+        var viewer = document.getElementById('pdfViewer');
+        viewer.src = pdfPath;
+    }
+</script>
+
+</body>
+</html>
